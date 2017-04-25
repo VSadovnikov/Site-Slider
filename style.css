@@ -215,3 +215,16 @@ span {
     width: 60px;
     height: 60px;
 }
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    border: 2px solid #fff;
+    background: none;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: whitesmoke;
+}
