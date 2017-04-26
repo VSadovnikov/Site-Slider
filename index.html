@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="normalize.css" />
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/swiper.jquery.min.js"></script>
-    <script src="js/animate.js"></script>
+
     <title>Slider</title>
 </head>
 
@@ -44,12 +44,12 @@
             <div class="swiper-slide">
                 <div class="container conteiner-slide2">
                     <h2 class="h2-slide2">All kinds of service works with the ability to see the process</h2>
-                    <img src="img/service.jpg">
+                    <img class="image2" src="img/service.jpg">
                 </div>
             </div>
             <!--Slide3-->
             <div class="swiper-slide">
-                <div class="container conteiner-slide1">
+                <div class="container conteiner-slide3">
                     <div class="columns">
                         <div class="left-column3">
                             <img class="img3" src="img/contact-img.jpg">
@@ -73,6 +73,19 @@
         <div class="swiper-button-next"></div>
 
     </div>
+
+
+    <!--animate js-->
+    <script>
+        $.fn.extend({
+            animateCss: function(animationName) {
+                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                this.addClass('animated ' + animationName).one(animationEnd, function() {
+                    $(this).removeClass('animated ' + animationName);
+                });
+            }
+        });
+    </script>
     <!--Slide inicialize-->
     <script>
         var swiper = new Swiper('.swiper-container', {
@@ -81,10 +94,31 @@
             nextButton: '.swiper-button-next',
             prevButton: '.swiper-button-prev',
             loop: true,
-            effect: 'flip'
+            onSlideChangeStart: function(swiper) {
+                if (swiper.realIndex == 0) {
+                    /* Side 1 animation */
+                    $('.left-column').animateCss('fadeInLeft');
+                    $('.h2-slide1').animateCss('fadeInDownBig');
+                    $('.link-block').animateCss('fadeInUpBig');
+                }
+
+                if (swiper.realIndex == 1) {
+                    /* Side 2 animation */
+                    $('.h2-slide2').animateCss('fadeInUpBig');
+                    $('.image2').animateCss('fadeInDownBig');
+                }
+                if (swiper.realIndex == 2) {
+                    /* Side 3 animation */
+                    $('.left-column3').animateCss('fadeInLeftBig');
+                    $('.h2-slide3').animateCss('fadeInDownBig');
+                    $('.text-slide3').animateCss('fadeInRightBig');
+                    $('.contact-btn-block').animateCss('fadeInUpBig');
+                }
+            }
+
+
         });
     </script>
-
 </body>
 
 </html>
